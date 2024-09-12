@@ -1,20 +1,210 @@
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.*;
 
 public class demo {
-    //找到字符串中所有的的异位符
-    public List<Integer> findAnagrams(String s, String p) {
-        int[] array = new int['z'];
+    //查找元素的第一个和最后一个位置  必须采用nlogN的方式
+    public int[] searchRange(int[] nums, int target) {
 
     }
-    //水果成篮   两个不同的篮子
-   /*
-   *
-   * 1 <= fruits.length <= 105
-     0 <= fruits[i] < fruits.length
-   * */
+    //最小覆盖子串
+        public String minWindow(String s, String t){
+            char[] ss = t.toCharArray();
+            char[] tt = s.toCharArray();
+            int[] hash1 = new int[128];
+            int[] hash2 = new int[128];
+            int kinds = 0;
+            int minLength = Integer.MAX_VALUE,begin = -1;
+            for(char cur: tt)  if(hash1[cur]++==0)
+                kinds++;
+            for(int left = 0,right=0,count=0;right<s.length();right++){
+                if(++hash2[ss[right]]==hash1[ss[right]]) count++; //进窗口和维护count
+
+                while(kinds==count) {
+                    if(right-left+1<minLength) {
+                        begin = left;
+                        minLength = right-left+1;
+                    }
+
+                    char out = ss[left++];
+                    if(hash2[out]--==hash1[out]) count--;
+                }
+
+            }
+            if(begin==-1) return "";
+            else  return s.substring(begin,begin+minLength);
+    }
+    public String minWindow2(String s, String t){
+        String ret = "";
+        HashMap<Character,Integer> hashMap1 = new HashMap<>();
+        HashMap<Character,Integer> hashMap2 = new HashMap<>();
+        char[] array1 = t.toCharArray();
+        char[] array2 = s.toCharArray();
+        for(char cur:array1){
+            hashMap1.put(cur,hashMap1.getOrDefault(cur,0)+1);
+        }
+
+        for(int left = 0,right = 0,count = 0;right<s.length();right++){
+            char in = array2[right];
+            hashMap2.put(in,hashMap2.getOrDefault(in,0)+1);
+
+            if(hashMap2.get(in)==hashMap1.getOrDefault(in,0)) count++;
+
+                //此时满足条件 更新ret
+            char out = array2[left];
+                 if(hashMap2.get(out)==hashMap1.getOrDefault(out,0)) count--;
+
+                 hashMap2.put(out,hashMap2.getOrDefault(out,0)-1);
+              if(count==hashMap1.size()) ret = s.substring(left,right-left+1);
+
+              left++;
+        }
+        return ret;
+    }
+     public String minWindow1(String s, String t)
+     {
+         String ret = "";
+         HashMap<Character,Integer> hashMap1 = new HashMap<>();
+         HashMap<Character,Integer> hashMap2 = new HashMap<>();
+         char[] array1 = t.toCharArray();
+         char[] array2 = s.toCharArray();
+         for(char cur:array1){
+             hashMap1.put(cur,hashMap1.getOrDefault(cur,0)+1);
+         }
+         for(int left = 0,right = 0;right<s.length();right++){
+              //进入
+               hashMap2.put(array2[right],hashMap2.getOrDefault(array2[right],0)+1);
+               //合法的时候出窗口  如何判断合法条件
+             while(Check(hashMap1,hashMap2,array1)){
+                 //先进性更新ret
+                 ret = s.substring(left,right);
+                 //更新left
+                 hashMap2.put(array2[left],hashMap2.get(left)-1);
+                 left++;
+             }
+         }
+
+         return ret;
+    }
+
+    private boolean Check(HashMap<Character, Integer> hashMap1, HashMap<Character, Integer> hashMap2, char[] array1) {
+
+        for(int i=0;i<array1.length;i++){
+            if(!hashMap2.containsKey(array1[i])) return false;
+        }
+        return true;
+    }
+
+    public static List<Integer> findSubstring(String s, String[] words) {
+        List<Integer> ret = new ArrayList<>();
+        HashMap<String,Integer> hashMap1 = new HashMap<>();
+        for(String cur:words){
+            hashMap1.put(cur,hashMap1.getOrDefault(cur,0)+1);
+        }
+        for(int i=0;i<words[0].length();i++){
+            HashMap<String,Integer> hashMap2 = new HashMap<>();
+             for(int left = i,right = i,count = 0;right+words[0].length()<=s.length();right+=words[0].length()){
+               String in = s.substring(right,right+words[0].length());
+               hashMap2.put(in,hashMap2.getOrDefault(in,0)+1);
+               //进入
+               if(hashMap2.get(in)<=hashMap1.getOrDefault(in,0)) count++;
+               //判断
+               if(right-left+1>words.length*words[0].length()){
+                   //出窗口加维护窗口
+                   String out = s.substring(left,left+words[0].length());
+                   if(hashMap2.get(out)<=hashMap1.getOrDefault(out,0)) count--;
+                   hashMap2.put(out, hashMap2.get(out)-1);
+                   left+=words[0].length();
+               }
+               if(count==words.length) ret.add(left);
+           }
+        }
+        return ret;
+    }
+    public List<Integer> findSubstring1(String s, String[] words) {
+        List<Integer> ret = new ArrayList<>();
+        for(String cur:words){
+            List<Integer> list = findAnagrams(s,cur);
+            for(Integer cur1:list){
+                ret.add(cur1);
+            }
+        }
+        return ret;
+    }
+    public  static List<Integer> findAnagrams2(String s, String p){
+        List<Integer> ret = new ArrayList<>();
+        char[] ss = s.toCharArray();
+        char[] pp = p.toCharArray();
+        int[] hash1 = new int[26];
+        int[] hash2 = new int[26];
+        for(char cur: pp){
+            hash1[cur-'a']++;
+        }
+        for(int left=0,right =0,count = 0;right<s.length();right++){
+            if(++hash2[ss[right]-'a']<=pp[ss[right]-'a']) count++;
+            if(right-left+1>p.length()) {
+                //出窗口
+                if(hash2[ss[left]-'a']--<=hash1[ss[left]-'a']) count--;
+                left++;
+            }
+            if(count==p.length()) ret.add(left);
+        }
+        return ret;
+    }
+    //找到字符串中所有的的异位符
+    public  static List<Integer> findAnagrams(String s, String p){
+        List<Integer> ret = new ArrayList<>();
+        char[] ss = s.toCharArray();
+        char[] pp = p.toCharArray();
+        int[] hash1 = new int[26];
+        int[] hash2 = new int[26];
+        for(char cur: pp){
+            hash1[cur-'a']++;
+        }
+        //利用count判断是否满足条件
+        for(int left=0,right =0,count = 0;right<s.length();right++){
+               if(++hash2[ss[right]-'a']<=pp[ss[right]-'a']) count++;
+               if(right-left+1>p.length()) {
+                   //出窗口
+                   if(hash2[ss[left]-'a']--<=hash1[ss[left]-'a']) count--;
+                   left++;
+               }
+            if(count==p.length()) ret.add(left);
+        }
+        return ret;
+    }
+    public  static List<Integer> findAnagrams1(String s, String p) {
+        char[] array1 = p.toCharArray();
+        char[] array2 = s.toCharArray();
+        List<Integer> list = new LinkedList<>();
+        int[] hash1 = new int[26],hash2 = new int[26];
+        for(int i=0;i<p.length();i++){
+            hash1[array1[i]-97]++;
+        }
+        for(int left = 0,rigth=0;rigth<s.length();rigth++){
+              hash2[array2[rigth]-97]++;
+             if(rigth-left+1==p.length()){
+                //开始进行两个哈希表的比较
+                 boolean  flag = FindIndex(hash1,hash2);
+                 if(flag)  list.add(left);
+                 //更新结果
+              hash2[array2[left++]-97]--;
+             }
+        }
+        return list;
+    }
+    private static boolean FindIndex(int[] hash1, int[] hash2) {
+         //比较两种哈希表内是否相同
+        for(int i=0;i<hash1.length;i++){
+            if(hash1[i]!=hash2[i]) return false;
+        }
+        return true;
+    }
+
+
+    /*
+    * 1 <= fruits.length <= 105
+      0 <= fruits[i] < fruits.length
+    * */
     public int totalFruit(int[] fruits) {
         HashMap<Integer,Integer> map = new HashMap<>();
         HashMap<Integer, Integer> hashMap = new HashMap<>();
@@ -83,6 +273,15 @@ public class demo {
 
     public static void main(String[] args) {
 
+        String[] words = {"foo","bar"};
+
+        String s = "barfoothefoobarman";
+        System.out.println(findSubstring(s, words));
+    }
+    public static void main7(String[] args) {
+      String s = "cbaebabacd";
+      String p = "abc";
+        System.out.println(findAnagrams(s, p));
     }
     public static void main1(String[] args) {
       HashMap<Integer,Integer> hashMap = new HashMap<>();
