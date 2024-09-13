@@ -2,9 +2,58 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 
 public class demo {
+    //先增后减
+    public int peakIndexInMountainArray(int[] arr) {
+
+    }
+    public  static int searchInsert(int[] nums, int target) {
+
+        int left = 0,right = nums.length;
+        while(left<right){
+            int mid = left+(right-left+1)/2;
+
+            if(nums[mid]<=target) left = mid;
+            else right = mid-1;
+        }
+        if(nums[left]==target) return left;
+        else return left+1;
+    }
+    public static int mySqrt(int x) {
+        if(x<1) return 0;
+        long left = 1,right = x;
+
+        while(left<right){
+            long  mid = left +(right-left+1)/2;
+            if(mid*mid<=x) left = mid;
+            else right = mid-1;
+        }
+
+        return(int) left;
+    }
     //查找元素的第一个和最后一个位置  必须采用nlogN的方式
     public int[] searchRange(int[] nums, int target) {
+        int[] ret = {-1,-1};
+        if(nums.length==0) return ret;
+        //查找左端点
+        //左端点
+        int left = 0,right = nums.length-1;
+        while (left<right){
+            int Mid = left +(right-left)/2;
+            if(nums[Mid]<target) left = Mid+1;
+            else    right = Mid;
+        }
+        if(nums[left]==target)  ret[0] = left;
+        //右端点
+        int left1 = 0,right1 = nums.length-1;
 
+        while(left1<right1){
+            //避免陷入死循环
+            int mid = left1+(right1-left1+1)/2;
+            if(nums[mid]<=target) left1 = mid;
+            else right1 = mid-1;
+         }
+        if(nums[right1]==target) ret[1] = right1;
+        return ret;
     }
     //最小覆盖子串
         public String minWindow(String s, String t){
@@ -272,6 +321,10 @@ public class demo {
     }
 
     public static void main(String[] args) {
+        int[] array = {1,3,5,6};
+        System.out.println(searchInsert(array, 7));
+    }
+    public static void main8(String[] args) {
 
         String[] words = {"foo","bar"};
 
