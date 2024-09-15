@@ -2,9 +2,136 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 
 public class demo {
-    //先增后减
-    public int peakIndexInMountainArray(int[] arr) {
+    //含有最长 0 1 的最长子数组，相同数量的 0 1
+    public int findMaxLength(int[] nums) {
+        int[] dp  = new int[nums.length];
+        dp[0] = 0;
+         for(int i=1;i<nums.length;i++){
+             dp[i] = dp[i-1] + nums[i-1];
+         }
+        int ans= 0;
+     //将零全部置为-1
+     for(int i=0;i<nums.length;i++){
+         nums[i] = nums[i]==0? -1:1;
+     }
+     HashMap<Integer,Integer> hashMap = new HashMap<>();
+     int sum = 0;
+     for(int cur:nums){
+         sum+=cur;
+         //求得是最长子数组的个数
 
+         hashMap.put(sum,hashMap.getOrDefault(sum,0)+1);
+     }
+        return ans;
+    }
+    //和为K的子数组
+    public static int subarraySum(int[] nums, int k) {
+          //哈希表的作用就是统计前缀和的次数   前缀有正有负
+        int[] dp  = new int[nums.length];
+        dp[0] = nums[0];
+        for(int i=1;i<nums.length;i++){
+            dp[i] = dp[i-1] + nums[i];
+        }
+        HashMap<Integer,Integer> hashMap = new HashMap<>();
+
+        hashMap.put(0,1);
+        int sum = 0,ret = 0;
+        for(int cur: nums){
+            sum+=cur;
+
+            ret+=hashMap.getOrDefault(sum-k,0);
+            hashMap.put(sum,hashMap.getOrDefault(sum,0)+1);
+        }
+        return ret;
+    }
+    //除自身以外其他数组的乘积  挺简单的
+    public  static int[] productExceptSelf(int[] nums) {
+        int[] ans = new int[nums.length];
+        int[] dp1 = new int[nums.length];
+        int[] dp2 = new int[nums.length];
+        dp1[0] = dp2[nums.length-1]=1;
+        for(int i=1;i< nums.length;i++){
+            dp1[i] = dp1[i-1]*nums[i-1];
+        }
+        for(int j = nums.length-2;j>=0;j--){
+            dp2[j] = dp2[j+1]*nums[j+1];
+        }
+
+        for(int i=0;i<nums.length;i++){
+            ans[i] = dp1[i]*dp2[i];
+        }
+        return ans;
+     }
+    //返回中心下标
+    public int pivotIndex(int[] nums) {
+           int[] dp1 = new int[nums.length]; // 0 到 i-1
+           int[] dp2 = new int[nums.length];//  i+1 到 n-1
+            dp1[0] = 0;
+            dp2[nums.length-1] = 0;
+           for(int i=1;i<nums.length;i++){
+               dp1[i] = dp1[i-1] + nums[i-1];
+           }
+           for(int j = nums.length-2;j>=0;j--){
+               dp2[j] = dp2[j+1] + nums[j];
+           }
+           for(int i=0;i<nums.length;i++){
+               if(dp1[i]==dp2[i]) return i;
+           }
+           return -1;
+    }
+    //矩阵前缀和
+    public void  Sum(int[][] nums){
+        int[][] dp = new int[nums.length + 1][nums[0].length+1];
+
+        for(int i=1;i< dp.length;i++){
+            for(int j=1;j<dp[0].length;j++){
+                dp[i][j] = dp[i-1][j]+dp[i][j-1]+nums[i][j]-dp[i-1][j-1];
+            }
+        }
+        Scanner scanner = new Scanner(System.in);
+
+        int x1 = scanner.nextInt();
+        int y1 = scanner.nextInt();
+        int x2 = scanner.nextInt();
+        int y2 = scanner.nextInt();
+        System.out.println(dp[x2][y2] - dp[x1][y2] - dp[x2][y1] +dp[x1][y1]);
+    }
+    //用二分法找最小值
+    public static int search(int[] nums, int target){
+         int left = 0,right = nums.length-1;
+
+         while(left<right){
+             int mid = left+(right-left)/2;
+             if(nums[mid]>=target && nums[mid+1]>nums[mid] || nums[mid+1]<nums[mid]) right = mid;
+             else left = mid+1;
+         }
+         if(nums[left]==target) return left;
+         else return -1;
+    }
+    public static int search1(int[] nums, int target) {
+
+        int left = 0,right = nums.length-1;
+
+        while(left<right){
+            int mid = left + (right-left)/2;
+               if(nums[mid]>=target) right = mid;
+               else left = mid+1;
+        }
+        if(nums[left]==target) return left;
+        else return -1;
+    }
+     //先增后减 寻找旋转数组中的最小值
+
+    public int findMin1(int[] nums) {
+
+        int left = 0,right = nums.length-1;
+
+        while(left<right){
+            int  mid = left + (right-left)/2;
+            if(nums[mid]<=nums[mid-1]) right = mid;
+            else  left = mid+1;
+        }
+        return nums[left];
     }
     public  static int searchInsert(int[] nums, int target) {
 
@@ -321,8 +448,9 @@ public class demo {
     }
 
     public static void main(String[] args) {
-        int[] array = {1,3,5,6};
-        System.out.println(searchInsert(array, 7));
+         int [] array = {1,2,3,3,5,6};
+         subarraySum(array,6);
+        //     System.out.println(search(array, 0));
     }
     public static void main8(String[] args) {
 
