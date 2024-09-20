@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d3090f5d-986c-4a5a-ae98-e48a7612ec96" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Staticfactorymethod/demo1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/demo2.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/untitled/demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled/demo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/demo.java" afterDir="false" />
@@ -35,14 +35,19 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.demo.executor": "Debug",
+    "Application.demo.executor": "Run",
+    "Application.demo2.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "D:/LeedCode/untitled/src/Main.java"
+    "onboarding.tips.debug.path": "D:/LeedCode/untitled/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "settings.sync"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.demo2">
     <configuration name="demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo" />
       <module name="untitled" />
@@ -50,8 +55,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="demo2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="demo2" />
+      <module name="untitled" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.demo2" />
         <item itemvalue="Application.demo" />
       </list>
     </recent_temporary>
@@ -71,9 +84,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/demo.java</url>
-          <line>451</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/demo2.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

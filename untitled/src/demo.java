@@ -2,6 +2,33 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.*;
 
 public class demo {
+    public  static int hammingWeight(int n) {
+        int ans = 0;
+//        while((n & (n - 1))) != 0)){
+//            ans++;
+//            n = n&(n-1);
+//        }
+        return ans;
+    }
+    //删除并获得节点数
+    public static int deleteAndEarn(int[] nums) {
+
+    return 0;
+    }
+    public static int subarraySum(int[] nums, int k) {
+           //我好想明白了
+        HashMap<Integer,Integer> hashMap = new HashMap<>();
+        hashMap.put(0,1);
+
+        int sum = 0,ret = 0;
+        for(int cur: nums){
+            sum+=cur;
+
+            ret+=hashMap.getOrDefault(sum-k,0);
+            hashMap.put(sum,hashMap.getOrDefault(sum,0)+1);
+        }
+        return ret;
+    }
     //含有最长 0 1 的最长子数组，相同数量的 0 1
     public int findMaxLength(int[] nums) {
         int[] dp  = new int[nums.length];
@@ -25,7 +52,7 @@ public class demo {
         return ans;
     }
     //和为K的子数组
-    public static int subarraySum(int[] nums, int k) {
+    public static int subarraySum2(int[] nums, int k) {
           //哈希表的作用就是统计前缀和的次数   前缀有正有负
         int[] dp  = new int[nums.length];
         dp[0] = nums[0];
@@ -448,8 +475,18 @@ public class demo {
     }
 
     public static void main(String[] args) {
-         int [] array = {1,2,3,3,5,6};
-         subarraySum(array,6);
+        System.out.println(1^1^2);
+    }
+    public static void main6(String[] args) {
+        int a = -1;
+        //Integer.bitCount()  计算二进制中1的个数
+
+        System.out.println(~a);
+    }
+    public static void main5(String[] args) {
+         int [] array = {1,1,1,1,-1,1,1};
+        System.out.println(subarraySum(array, 2));
+
         //     System.out.println(search(array, 0));
     }
     public static void main8(String[] args) {
