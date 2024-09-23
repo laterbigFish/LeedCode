@@ -1,6 +1,34 @@
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.Random;
 
 public class demo2 {
+    public  static int findKthLargest(int[] nums, int k){
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+        if(nums.length<k) return -1;
+        for(int i=0;i<nums.length;i++){
+            if(priorityQueue.peek()==null) priorityQueue.offer(nums[i]);
+            else{
+                if(nums[i]>priorityQueue.peek()){
+
+                }
+            }
+        }
+        return priorityQueue.peek();
+    }
+    public  static int findKthLargest1(int[] nums, int k) {
+        Arrays.sort(nums);
+        if(nums.length<k) return 0;
+        PriorityQueue<Integer> priorityQueue = new PriorityQueue<>(Comparator.reverseOrder());
+        for(int i=0;i<nums.length;i++){
+            if(priorityQueue.peek()!=null && nums[i]==priorityQueue.peek() ) continue;
+            priorityQueue.offer(nums[i]);
+          if(priorityQueue.size()==k) break;
+        }
+
+        return priorityQueue.poll();
+    }
     public int[] sortArray(int[] nums) {
         qsort(nums, 0, nums.length - 1);
         return nums;
@@ -26,7 +54,10 @@ public class demo2 {
         array[MaxIndex] = array[i];
         array[i] = temp;
     }
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
+        int[] array = {3,2,1,5,6,4};
+        System.out.println(findKthLargest(array, 2));
     }
+
 }
