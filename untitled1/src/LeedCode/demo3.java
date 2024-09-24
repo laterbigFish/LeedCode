@@ -7,6 +7,31 @@ import java.util.Random;
 import static java.util.Collections.swap;
 
 public class demo3 {
+
+//    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+//        ListNode ans = new ListNode(0);
+//        int t = 0;
+//        while(l1!=null || l2!=null || t!=0){
+//            int val1 = l1==null? 0:l1.val;
+//            int val2 = l2==null? 0:l2.val;
+//            int val = val1+val2+t;
+//
+//            t = (val1+val2)/10;
+//
+//            ListNode temp = new ListNode(val%10);
+//
+//            ans.next = temp;
+//
+//            if(l1!=null) {
+//                l1 = l1.next;
+//            }
+//            if(l2!=null) {
+//                l2 = l2.next;
+//            }
+//
+//        }
+//        return ans.next;
+//    }
     public int[] sortArray1(int[] nums) {
         qsort(nums, 0, nums.length - 1);
         return nums;

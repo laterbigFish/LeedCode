@@ -3,6 +3,8 @@ package LeedCode;
 import java.util.Random;
 
 public class demo4 {
+
+        Random random = new Random();
     public static int findKthLargest(int[] nums, int k) {
         return qsort(nums, 0, nums.length-1, k);
     }
@@ -25,10 +27,9 @@ public class demo4 {
         if (c >= k)
             qsort(nums, right, r, k);
         else if (b + c >= k)
-            return RandomKey;
+                     return RandomKey;
 
-        return qsort(nums, l, left, k - b - c);
-
+        qsort(nums, l, left, k - b - c);
     }
     public static void swap(int[] array, int i, int j) {
         int temp = array[i];
