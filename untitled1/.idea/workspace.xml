@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="00a513e5-9636-42d3-8738-0135479e201f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LeedCode/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LeedCode/demo6.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LeedCode/dmeo5.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LeedCode/demo7.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled1/LeedCode/demo4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LeedCode/demo3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeedCode/demo3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LeedCode/demo4.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeedCode/demo4.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,18 +31,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.demo1.executor": "Run",
-    "Application.demo2.executor": "Run",
-    "Application.demo3.executor": "Debug",
-    "Application.demo4.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "D:/LeedCode/untitled1/src/Main.java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.demo1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.demo2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.demo3.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.demo4.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;D:/LeedCode/untitled1/src/Main.java&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.demo4">
     <configuration name="demo1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="demo1" />
