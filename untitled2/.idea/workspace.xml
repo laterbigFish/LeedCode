@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="370dcf2e-884a-46a6-a36b-c76e36fc196c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/School/csdn.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/demo11.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Clint/USDClint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Clint/USDsever.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/LeedCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/School/dmoe1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/School/dmoe1.java" afterDir="false" />
     </list>
@@ -34,17 +34,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Test.executor": "Debug",
-    "Application.demo11.executor": "Run",
-    "Application.dmoe1.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "D:/LeedCode/untitled2/src/Main.java"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Test.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.demo11.executor&quot;: &quot;Run&quot;,
+    &quot;Application.dmoe1.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;D:/LeedCode/untitled2/src/Main.java&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.Test">
     <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Test" />
