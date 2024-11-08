@@ -4,6 +4,7 @@ import java.util.Deque;
 import java.util.Stack;
 
 public class LeedCode2 {
+
     public  static boolean validateStackSequences(int[] pushed, int[] popped) {
        Stack<Integer> stack = new Stack<>();
        int n = 0;
@@ -12,7 +13,6 @@ public class LeedCode2 {
            if(stack.peek()==popped[n]){
             stack.pop();
             n++;
-            //随后观察是否为空
                while(!stack.isEmpty()){
                    if(stack.peek()==popped[n]) {
                      stack.pop();
@@ -192,8 +192,10 @@ public class LeedCode2 {
          return stringBuilder1.equals(stringBuilder2);
     }
     public static void main(String[] args) {
-        System.out.println(decodeString("3[a]2[bc]"));
-        Deque<Integer> deque = new ArrayDeque<>();
+        int[] array = {5,-3,5};
+
+//        System.out.println(decodeString("3[a]2[bc]"));
+//        Deque<Integer> deque = new ArrayDeque<>();
 //        System.out.println(decodeString("3[a]2[bc]"));
         //        System.out.println(calculate("3+2*2"));
 //        System.out.println(backspaceCompare("aaa", "aaa"));
