@@ -1,19 +1,43 @@
 package Sort;
 
+import javax.swing.*;
+import javax.swing.event.ListDataListener;
 import javax.swing.tree.TreeNode;
 import java.util.*;
 
 public class FactorialSum {
-    private List<String> ret = new LinkedList<>();
 
-
-    PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
-    public int kthSmallest(TreeNode root, int k) {
-        selectTreeNode(root,k);
-        int size = priorityQueue.size();
-        selectTreeNode(root,k);
-        return priorityQueue.poll();
+    private List<List<Integer>> ret = new LinkedList<>();
+    private List<Integer> path = new LinkedList<>();
+    private boolean[] check;
+    public List<List<Integer>> permute(int[] nums) {
+        check = new boolean[nums.length];
+        dfs(nums);
+      return ret;
     }
+    private void dfs(int[] nums) {
+         if(path.size()==nums.length) {
+             ret.add(new LinkedList<>(path));
+             return;
+         }
+         for(int i=0;i< nums.length;i++){
+             if(check[i]==false){
+                 path.add(nums[i]);
+                 check[i] = true;
+                 dfs(nums);
+                 check[i] = false;
+                 path.removeLast();
+             }
+         }
+    }
+//    List<Integer> list = new LinkedList<>();
+//    PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
+//    public int kthSmallest(TreeNode root, int k) {
+//        selectTreeNode(root,k);
+//        int size = priorityQueue.size();
+//        selectTreeNode(root,k);
+//        return priorityQueue.poll();
+//    }
 
     private void selectTreeNode(TreeNode root,int k) {
         if(root==null) return;
@@ -90,8 +114,9 @@ public class FactorialSum {
 //        a = 10;
 //    }
 public static void main(String[] args) {
-    System.out.println(new StringBuilder());
-}
+    System.out.println(0^3);
+
+    }
     public static void main4(String[] args) {
         StringBuilder stringBuilder = new StringBuilder();
          StringBuilder stringBuilder1 = new StringBuilder();
