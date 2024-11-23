@@ -1,41 +1,169 @@
 package LeedCode;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class demo4 {
-    public  static int  lengthOfLIS(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
-        }
-        // 以i位置为结尾的最长递增子序列
-
-        int[] dp = new int[nums.length],temp = new int[nums.length];
-        dp[0] = temp[0]=1;
-        int ret = 0;
-        for (int i = 1; i < nums.length; i++) {
-            dp[i] = 1;
-            for (int j = 0; j < i; j++) {
-
-                if (nums[i] > nums[j]) {
-                    temp[dp[j]+1]++;
-                    dp[i]=Math.max ( dp[i] , dp[j]+1 );
-                }
-                else if(nums[i] == nums[j]){
-                    temp[dp[j]]++;
+    private int[] dx = {1,-1,0,0};
+    private int[] dy = {0,0,1,-1};
+    public int cutOffTree(List<List<Integer>> forest) {
+        int m = forest.size (),n = forest.get ( 0 ).size ();
+        List<int[]> list = new LinkedList <> ();
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                 //表示它是一颗树
+                if(forest.get ( i ).get ( j )>1){
+                //放入到list中
+                 list.add ( new int[]{i,j} );
                 }
             }
-            ret = Math.max(ret, dp[i]);
         }
-        if(ret==1) return 1;
-        return temp[ret];
-    }
-    public  static int findNumberOfLIS(int[] nums) {
-        return lengthOfLIS(nums);
+        //根据坐标从小到大排序
+       Collections.sort ( list,(a,b)->{
+           return forest.get (a[0]).get ( a[1] ) - forest.get ( b[0] ).get ( b[1] );
+       } );
+        //按照顺序砍树
+        int bx = 0,by = 0;
+        int ret = 0;
+        for(int[] tree:list){
+            int x  = tree[0],y = tree[1];
+            int step = bfs(forest,bx,by,x,y);
+            if(step==-1) return -1;
+            ret+=step;
+            bx = x;
+            by = y;
+        }
+        return ret;
     }
 
+    private int bfs ( List <List <Integer>> forest , int bx , int by , int x , int y ) {
+        //宽度优先
+        if(bx==x && by==y) return 0;
+        int ret = 0;
+        Deque<int[]> deque = new LinkedList <> ();
+        boolean[][] vision = new boolean[forest.size ()][forest.get ( 0 ).size ()];
+        deque.add (new int[]{bx,by});
+        vision[bx][by] = true;
+        while(!deque.isEmpty()){
+            ret++;
+            int sz = deque.size ();
+            while(sz--!=0){
+                int[] t = deque.poll ();
+                int a = t[0],b = t[1];
+                for(int i=0;i<4;i++){
+                    int x1 = a +dx[i],y1 = b + dy[i];
+                    if(x1>=0 && x<forest.size () && y>=0 && y<forest.get ( 0 ).size () && !vision[x1][y1] && forest.get ( x1 ).get ( y1 )!=0){
+
+                        if(x1==x && y1==y) return ret;
+                        deque.add ( new int[]{x1,y1} );
+                        vision[x1][y1] = true;
+
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+//    public int ret = 0;
+//
+//    public  int ladderLength(String beginWord, String endWord, List<String> wordList) {
+//        HashSet<String> vis = new HashSet<>();
+//        HashSet<String> hash = new HashSet<>(wordList);
+//        Deque<String> deque = new LinkedList<>();
+//        char[] temp = { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+//                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
+//        deque.add(beginWord);
+//        vis.add(beginWord);
+//
+//        if (beginWord.equals(endWord) || !hash.contains(endWord))
+//            return 0;
+//
+//        while (!deque.isEmpty()) {
+//            ret++;
+//            int sz = deque.size();
+//            while (sz-- != 0) {
+//                String t = deque.poll();
+//                for (int i = 0; i < t.length(); i++) {
+//                    char[] charArray = t.toCharArray();
+//                    for (int j = 0; j < 26; j++) {
+//                        charArray[i] = temp[j];
+//                        String next = String.valueOf(charArray);
+//                        if (hash.contains(next)
+//                                && !vis.contains(next)) {
+//                            if (String.valueOf(charArray[i]).equals(endWord))
+//                                return ret;
+//
+//                            deque.add(String.valueOf(charArray[i]));
+//
+//                            vis.add(String.valueOf(charArray[i]));
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        return -1;
+//    }
+//    public  static  int findNumberOfLIS(int[] nums) {
+//
+//        int n = nums.length, maxLen = 0, ans = 0;
+//        int[] dp = new int[n];
+//        int[] cnt = new int[n];
+//        for (int i = 0; i < n; ++i) {
+//            dp[i] = cnt[i] = 1;
+//            for (int j = 0; j < i; ++j) {
+//                if (nums[i] > nums[j]) {
+//                    if (dp[j] + 1 > dp[i]) {
+//
+//                        dp[i] = dp[j] + 1;
+//                        cnt[i] = cnt[j]; // 重置计数
+//                    } else if (dp[j] + 1 == dp[i]) {
+//                        cnt[i] += cnt[j];
+//                    }
+//                }
+//            }
+//
+//            if (dp[i] > maxLen) {
+//                maxLen = dp[i];
+//                ans = cnt[i]; // 重置计数
+//            } else if (dp[i] == maxLen) {
+//                ans += cnt[i];
+//            }
+//
+//        }
+//        return ans;
+//    }
+//    public  static int  lengthOfLIS(int[] nums) {
+//        if (nums.length == 0) {
+//            return 0;
+//        }
+//        // 以i位置为结尾的最长递增子序列
+//
+//        int[] dp = new int[nums.length],temp = new int[nums.length];
+//        dp[0] = temp[0]=1;
+//        int ret = 0;
+//        for (int i = 1; i < nums.length; i++) {
+//            dp[i] = 1;
+//            for (int j = 0; j < i; j++) {
+//
+//                if (nums[i] > nums[j]) {
+//                    temp[dp[j]+1]++;
+//                    dp[i]=Math.max ( dp[i] , dp[j]+1 );
+//                }
+//                else if(nums[i] == nums[j]){
+//                    temp[dp[j]]++;
+//                }
+//            }
+//            ret = Math.max(ret, dp[i]);
+//        }
+//        if(ret==1) return 1;
+//        return temp[ret];
+//    }
+//    public  static int findNumberOfLIS(int[] nums) {
+//        return lengthOfLIS(nums);
+//    }
+
     public static void main ( String[] args ) {
-        int[] array  = {1,1,1};
-        System.out.println ( findNumberOfLIS ( array ) );
+
     }
     //最长递增子序列的个数
 //    public int findNumberOfLIS(int[] nums) {
