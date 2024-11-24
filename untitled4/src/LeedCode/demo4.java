@@ -3,66 +3,200 @@ package LeedCode;
 import java.util.*;
 
 public class demo4 {
-    private int[] dx = {1,-1,0,0};
-    private int[] dy = {0,0,1,-1};
-    public int cutOffTree(List<List<Integer>> forest) {
-        int m = forest.size (),n = forest.get ( 0 ).size ();
-        List<int[]> list = new LinkedList <> ();
-        for(int i=0;i<m;i++){
-            for(int j=0;j<n;j++){
-                 //表示它是一颗树
-                if(forest.get ( i ).get ( j )>1){
-                //放入到list中
-                 list.add ( new int[]{i,j} );
+    public int findLongestChain2(int[][] pairs) {
+        // 以i位置为结尾的最长数对链
+        int[] dp = new int[pairs.length];
+        Arrays.fill(dp, 1);
+        //以任意顺序进行排列因此可以改变数组
+
+        Arrays.sort(pairs, (v1, v2) -> {
+            return v1[0] - v2[0];
+        });
+        for (int i = 0; i < pairs.length; i++) {
+
+            for (int k = 0; k < i; k++) {
+                if (pairs[i][0] > pairs[k][1]) {
+                    dp[i] = Math.max(dp[i], dp[k] + 1);
                 }
+
             }
         }
-        //根据坐标从小到大排序
-       Collections.sort ( list,(a,b)->{
-           return forest.get (a[0]).get ( a[1] ) - forest.get ( b[0] ).get ( b[1] );
-       } );
-        //按照顺序砍树
-        int bx = 0,by = 0;
-        int ret = 0;
-        for(int[] tree:list){
-            int x  = tree[0],y = tree[1];
-            int step = bfs(forest,bx,by,x,y);
-            if(step==-1) return -1;
-            ret+=step;
-            bx = x;
-            by = y;
-        }
-        return ret;
+        return dp[pairs.length - 1];
     }
+    public int findLongestChain(int[][] pairs) {
+        //以i位置为结尾的最长数对链
+        int[] dp = new int[pairs.length+1];
+        int ans = 1;
 
-    private int bfs ( List <List <Integer>> forest , int bx , int by , int x , int y ) {
-        //宽度优先
-        if(bx==x && by==y) return 0;
-        int ret = 0;
-        Deque<int[]> deque = new LinkedList <> ();
-        boolean[][] vision = new boolean[forest.size ()][forest.get ( 0 ).size ()];
-        deque.add (new int[]{bx,by});
-        vision[bx][by] = true;
-        while(!deque.isEmpty()){
-            ret++;
-            int sz = deque.size ();
-            while(sz--!=0){
-                int[] t = deque.poll ();
-                int a = t[0],b = t[1];
-                for(int i=0;i<4;i++){
-                    int x1 = a +dx[i],y1 = b + dy[i];
-                    if(x1>=0 && x<forest.size () && y>=0 && y<forest.get ( 0 ).size () && !vision[x1][y1] && forest.get ( x1 ).get ( y1 )!=0){
+        for(int i = 0;i<pairs.length;i++){
+            dp[i] = 1;
+            //从前面找到那个最长的数对链表
+            int max = 0;
+            for(int k=0;k<i;k++){
 
-                        if(x1==x && y1==y) return ret;
-                        deque.add ( new int[]{x1,y1} );
-                        vision[x1][y1] = true;
-
-                    }
-                }
             }
+            dp[i]+=max;
+            ans = Math.max(ans,dp[i]);
         }
-        return -1;
+        return ans;
     }
+    public  static boolean canJump(int[] nums) {
+
+        int left = 0, right = 0, maxpos = 0;
+
+        while (left <= right) {
+            if (maxpos >= nums.length - 1)
+                return true;
+
+            for (int i = left; i <= right; i++) {
+                maxpos = Math.max(maxpos, i + nums[i]);
+            }
+            left = right+1;
+            right = maxpos;
+
+        }
+
+        return false;
+    }
+    public int jump(int[] nums) {
+        int ans = 1;
+        int left = 0,right = 0;
+        while(true){
+             if(right>= nums.length) break;
+          int max = 0;
+          for(int i=left;i<=right;i++){
+              max  =  Math.max(max,nums[i]+i);
+          }
+          left = right+1;
+          right = max;
+        }
+        return ans;
+    }
+    public int jump1(int[] nums) {
+       //从零开始到达i的最小跳跃次数
+        int[] dp = new int[nums.length];
+
+      for(int i=0;i<nums.length;i++){
+
+           for(int k = 0;k<i;k++){
+               if(nums[k]+k>=i){
+                   dp[i] = dp[k]+1;
+                   break;
+               }
+           }
+      }
+
+      return  dp[nums.length-1];
+    }
+    public int[][] merge(int[][] intervals) {
+        if(intervals.length<2) return intervals;
+           Arrays.sort ( intervals,(v1,v2)->{
+               return v1[0] - v2[0];
+           } );
+           List<int[]> list = new LinkedList <> ();
+           for(int i = 0;i<intervals.length;i++){
+                int left = intervals[i][0],right = intervals[i][1];
+                if(list.size ()==0 ||  left>list.get ( list.size ()-1 )[1]){
+
+                    list.add ( new int[]{left,right});
+                }else{
+                   //进行合并
+                    list.get ( list.size ()-1 )[1] = Math.max ( list.get ( list.size ()-1 )[1],right );
+                }
+           }
+
+           return list.toArray (new int[list.size ()][]);
+    }
+public static void main ( String[] args ) {
+
+         int[] array = {2,3,1,1,4};
+    System.out.println ( canJump ( array ) );
+//      List<Integer> list = new LinkedList <> ();
+//      list.add ( 1 );
+//    System.out.println (list.get ( 0 ));
+//    System.out.println ( list.remove ( 0 ) );
+}
+//    public int[][] merge(int[][] intervals) {
+//
+//        mergesort(intervals,0,intervals.length-1);
+//        //进行真实的合并
+//
+//        return intervals;
+//    }
+//
+//    private void mergesort ( int[][] intervals , int left , int right ) {
+//
+//        if(left>=right) return;
+//        int mid = (left+right)/2;
+//
+//        mergesort ( intervals,left,mid);
+//        mergesort ( intervals,mid+1,right );
+//        //进行合并
+//         while(left<=mid && mid+1<right){
+//
+//         }
+//
+//    }
+//    private final int[] dx = {1,-1,0,0};
+//    private final int[] dy = {0,0,1,-1};
+//    public int cutOffTree(List<List<Integer>> forest) {
+//        int m = forest.size (),n = forest.get ( 0 ).size ();
+//        List<int[]> list = new LinkedList <> ();
+//        for(int i=0;i<m;i++){
+//            for(int j=0;j<n;j++){
+//                 //表示它是一颗树
+//                if(forest.get ( i ).get ( j )>1){
+//                //放入到list中
+//                 list.add ( new int[]{i,j} );
+//                }
+//            }
+//        }
+//        //根据坐标从小到大排序
+//       Collections.sort ( list,(a,b)->{
+//           return forest.get (a[0]).get ( a[1] ) - forest.get ( b[0] ).get ( b[1] );
+//       } );
+//        //按照顺序砍树
+//        int bx = 0,by = 0;
+//        int ret = 0;
+//        for(int[] tree:list){
+//            int x  = tree[0],y = tree[1];
+//            int step = bfs(forest,bx,by,x,y);
+//            if(step==-1) return -1;
+//            ret+=step;
+//            bx = x;
+//            by = y;
+//        }
+//        return ret;
+//    }
+//
+//    private int bfs ( List <List <Integer>> forest , int bx , int by , int x , int y ) {
+//        //宽度优先
+//        if(bx==x && by==y) return 0;
+//        int ret = 0;
+//        Deque<int[]> deque = new LinkedList <> ();
+//        boolean[][] vision = new boolean[forest.size ()][forest.get ( 0 ).size ()];
+//        deque.add (new int[]{bx,by});
+//        vision[bx][by] = true;
+//        while(!deque.isEmpty()){
+//            ret++;
+//            int sz = deque.size ();
+//            while(sz--!=0){
+//                int[] t = deque.poll ();
+//                int a = t[0],b = t[1];
+//                for(int i=0;i<4;i++){
+//                    int x1 = a +dx[i],y1 = b + dy[i];
+//                    if(x1>=0 && x<forest.size () && y>=0 && y<forest.get ( 0 ).size () && !vision[x1][y1] && forest.get ( x1 ).get ( y1 )!=0){
+//
+//                        if(x1==x && y1==y) return ret;
+//                        deque.add ( new int[]{x1,y1} );
+//                        vision[x1][y1] = true;
+//
+//                    }
+//                }
+//            }
+//        }
+//        return -1;
+//    }
 //    public int ret = 0;
 //
 //    public  int ladderLength(String beginWord, String endWord, List<String> wordList) {
@@ -162,9 +296,9 @@ public class demo4 {
 //        return lengthOfLIS(nums);
 //    }
 
-    public static void main ( String[] args ) {
-
-    }
+//    public static void main ( String[] args ) {
+//
+//    }
     //最长递增子序列的个数
 //    public int findNumberOfLIS(int[] nums) {
 //        int n = nums.length, maxLen = 0, ans = 0;
