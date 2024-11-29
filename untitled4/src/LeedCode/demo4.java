@@ -3,6 +3,242 @@ package LeedCode;
 import java.util.*;
 
 public class demo4 {
+
+//
+//        [0,0,0,1,1,1,0,0,0,0],
+//        [1,1,0,0,0,1,0,0],
+//        [0,0,0,1,1,1,0,0,0,0],
+//        [0,1,1,0,0,0,1,0,1,0],
+//        [0,1,1,1,1,1,0,0,1,0],
+//        [0,0,1,0,0,0,0,0,0,0],
+//        [0,1,1,0,0,0,0,0,0,0],
+//        [0,0,1,0,0,0,0,0,0,0],
+//        [1,0,1,0,0,0,0,0,0,0],
+//        [0,0,0,0,0,0,0,0,0,1]
+    public static   int[] dx = { 1, -1, 0, 0 };
+    public  static int[] dy = { 0, 0, 1, -1 };
+
+    public  static int numEnclaves(int[][] grid) {
+
+        int m = grid.length, n = grid[0].length;
+        Deque<int[]> deque = new LinkedList<>();
+        int ret = 0;
+        for(int i=0;i<m;i++){
+            for(int j = 0;j<n;j++){
+                if(grid[i][j]==1) ret++;
+            }
+        }
+        for (int i = 0; i < m; i++) {
+            if (grid[i][0] == 1){
+                deque.add(new int[] { i, 0 });
+                ret--;
+                grid[i][0] = 0;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (grid[0][i] == 1){
+                ret--;
+                deque.add(new int[] { 0, i });
+                grid[0][i] = 0;
+            }
+        }
+
+        while (!deque.isEmpty()) {
+            int[] t = deque.poll();
+
+            int a = t[0], b = t[1];
+            for(int i=0;i<4;i++){
+                int x = a + dx[i],y = b + dy[i];
+                if(x>=0 && y>=0 && x<m && y<n && grid[x][y]==1){
+                    deque.add(new int[]{x,y});
+                    ret--;
+                    grid[x][y] = 0;
+                }
+
+            }
+        }
+        return ret;
+    }
+
+    public static void main ( String[] args ) {
+        int[][] array = {{0,0,0,1,1,1,0,1,0,0},{1,1,0,0,0,1,0,1,1,1},
+                {0,0,0,1,1,1,0,1,0,0},{0,1,1,0,0,0,1,0,1,0}};
+        System.out.println ( numEnclaves ( array ) );
+    }
+//    private final int[] dx = { 1, -1, 0, 0 };
+//    private final int[] dy = { 0, 0, 1, -1 };
+//    private int[][] dist;
+//
+//    public int[][] updateMatrix(int[][] mat) {
+//        dist = new int[mat.length][mat[0].length];
+//        Deque<int[]> deque = new LinkedList <> ();
+//        for(int[] cur:dist) Arrays.fill(cur,-1);  //统一初始化为-1 可以观察到是否是最先遍历到的
+//
+//        for(int i=0;i<mat.length;i++){
+//            for(int j = 0;j<mat[0].length;j++){
+//                if(mat[i][j]==0){
+//                    deque.offer(new int[]{i,j});
+//                    dist[i][j] = 0;
+//                }
+//            }
+//        }
+//        while(!deque.isEmpty()){
+//
+//            int sz = deque.size();
+//            while(sz--!=0){
+//                int[] cur = deque.poll();
+//                int a = cur[0],b = cur[1];
+//
+//                for(int i=0;i<4;i++){
+//                    int x = a + dx[i],y = b+dy[i];
+//                    if(dist[x][y]==-1 && x>=0 && y>=0 && x <mat.length && y<mat[0].length){
+//                        dist[x][y] = dist[a][b]+1;
+//                        deque.offer(new int[]{x,y});
+//                    }
+//                }
+//            }
+//        }
+//        return dist;
+//    }
+//    public  static  int numberOfArithmeticSlices(int[] nums) {
+//        //非常恶心 计算中途可能会溢出
+//        if (nums.length < 3)
+//            return 0;
+//
+//        HashMap<Long, int[]> hashMap = new HashMap<>();
+//        int[][] dp = new int[nums.length][nums.length];
+//        int ret = 0;
+//
+//        for (int i = 0; i < nums.length; i++) {
+//            if (hashMap.getOrDefault((long)nums[i], null) == null) {
+//                hashMap.put( (long) nums[i] , new int[] { i });
+//            } else {
+//                int[] cur = Arrays.copyOf(hashMap.get((long)nums[i]), hashMap.get((long)nums[i]).length + 1);
+//
+//                cur[cur.length - 1] = i;
+//                hashMap.put((long)nums[i], cur);
+//            }
+//        }
+//
+//        for (int j = 2; j < nums.length; j++) {
+//            for (int i = 1; i < j; i++) {
+//                long a = (long) (2L * nums[i] - nums[j]);
+//                if (hashMap.containsKey(a)) {
+//                    for (int index : hashMap.get(a)) {
+//                        if (index < i) {
+//                            dp[i][j] += (dp[index][i] + 1);
+//                        } else {
+//                            break;
+//                        }
+//                    }
+//                    ret += dp[i][j];
+//                }
+//            }
+//        }
+//        return ret;
+//    }
+//    public  static int longestArithSeqLength(int[] nums) {
+//        // 也行就是时间复杂度有点高 超时了
+//        int[][] dp = new int[nums.length][nums.length];
+//        int ret = 2;
+//        HashMap<Integer,int[]> hashMap = new HashMap <> ();
+//        for (int k = 0; k < nums.length; k++) {
+//            if(hashMap.get(nums[k])==null){
+//                hashMap.put ( nums[k],new int[]{k} );
+//            }else{
+//                //取出数组中的元素
+//                int[] cur = hashMap.get ( nums[k] );
+//                //将新的hash值放进去
+//                int[] t = new int[cur.length+1];
+//                for(int i=0;i<cur.length;i++){
+//                    t[i] = cur[i];
+//                }
+//                //从小到呀依次排列
+//                t[t.length-1] = k;
+//                hashMap.put ( nums[k],t );
+//            }
+//            for (int i = k-1; i >=0; i--) {
+//                dp[i][k] = 2;
+//               //观察是够有满足条件的等差元素
+//                int n = nums[k] - nums[i];
+//                if(hashMap.containsKey ( nums[i]-n )){
+//                    int[] cur = hashMap.get ( nums[i]-n );
+//
+//                    for(int j = 0;j<cur.length;j++){
+//                        if(cur[j]<i){
+//                            dp[i][k] +=  dp[cur[j]][i]+1;
+//                            ret+=dp[i][j];
+//                        }
+//                    }
+//                }
+//
+//            }
+//        }
+//        return ret;
+//    }
+//    public int lenLongestFibSubseq(int[] arr) {
+//        int[][] dp = new int[arr.length][arr.length];
+//        HashMap<Integer,Integer>hashMap = new HashMap <> ();
+//        Arrays.fill(dp,2);
+//        for(int i=0;i<arr.length;i++){
+//            hashMap.put ( arr[i],i );
+//        }
+//        int ret = 0;
+//        for(int j = 2;j<arr.length;j++){
+//            for(int i = 0;i<j;i++){
+//                if(arr[j]-arr[i]<arr[i] && hashMap.containsKey ( arr[j]-arr[i] )){
+//                    dp[i][j] = dp[hashMap.get ( arr[j]-arr[i] )][i]+1;
+//                }
+//                ret = Math.max ( ret,dp[i][j] );
+//            }
+//        }
+//        return ret<3?0:ret;
+//    }
+//    public int lenLongestFibSubseq(int[] arr) {
+//        int[][] dp = new int[arr.length][arr.length];
+//        HashMap<Integer, Integer> hashMap = new HashMap<>();
+//        for (int i = 0; i < arr.length; i++) {
+//            hashMap.put(arr[i], i);
+//        }
+//
+//        int ret = 0;
+//
+//        for (int j = 0; j < arr.length; j++) {
+//            for (int i = 0; i < arr.length; i++) {
+//                dp[i][j] = 2;
+//                if (i < j && hashMap.get(arr[i] - arr[j]) != null && hashMap.get(arr[i] - arr[j]) < j) {
+//                    // 找到了之后进行赋值
+//                    dp[i][j] = dp[hashMap.get ( arr[j] - arr[i] )][j]+1;
+//                    ret = Math.max(ret, dp[i][j]);
+//                }
+//            }
+//        }
+//        if (ret <= 2)
+//            return 0;
+//
+//        return ret;
+//    }
+    public int longestSubsequence(int[] arr, int difference) {
+        int[][] dp = new int[arr.length][arr.length];
+        HashMap<Integer,Integer> hashMap = new HashMap<>();
+        for(int i=0;i<arr.length;i++){
+            hashMap.put ( arr[i],i );
+        }
+        int ret = 0;
+         Arrays.fill ( dp ,2);
+        for(int j = 0;j<arr.length;j++){
+            for(int i = 0;i<arr.length;i++){
+                if(i<j && hashMap.get ( arr[i] - arr[j] )<i){
+                     //找到了之后进行赋值
+                    dp[i][j] = dp[arr[i] - arr[j]][j]+1;
+                    ret = Math.max(ret,dp[i][j]);
+                }
+            }
+        }
+        if(ret<=2) return 0;
+
+        return ret;
+    }
     public int findLongestChain2(int[][] pairs) {
         // 以i位置为结尾的最长数对链
         int[] dp = new int[pairs.length];
@@ -107,10 +343,27 @@ public class demo4 {
 
            return list.toArray (new int[list.size ()][]);
     }
-public static void main ( String[] args ) {
 
-         int[] array = {2,3,1,1,4};
-    System.out.println ( canJump ( array ) );
+//    public static void main ( String[] args ) {
+//        HashMap<Integer,Integer> hashMap = new HashMap <> ();
+//
+//        hashMap.put ( 3,1 );
+//        System.out.println (hashMap.get ( 3 ));
+//        hashMap.put ( 3,2 );
+//        System.out.println (hashMap.get ( 3 ));
+//
+//    }
+public static void main2 ( String[] args ) {
+        int[] array = {7,7,7,7,7};
+//    System.out.println ( numberOfArithmeticSlices ( array ) );
+//        int[] cur= Arrays.copyOf ( array,array.length+1 );
+//        cur[cur.length-1] =  10000;
+//    System.out.println (Arrays.toString ( cur ));
+//    HashMap<Integer,Integer> hashMap = new HashMap <> ();
+
+//       int[] array = {1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,100,103,106,109,112,115,118,121,124,127,130,133,136,139,142,145,1,6,11,16,21,26,31,36,41,46,51,56,61,66,71,76,81,86,91,96,101,106,111,116,121,126,131,136,141,146,151,156,161,166,171,176,181,186,191,196,201,206,211,216,221,226,231,236,241,246,251,256,261,266,271,276,281,286,291,296,301,306,311,316,321,326,331,336,341,346,351,356,361,366,1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,100,103,106,109,112,115,118,121,124,127,130,133,136,139,142,145,148,151,154,157,160,163,166,169,172,175,178,181,184,187,190,193,196,199,202,205,208,211,214,217,220,223,226,229,232,235,238,241,244,247,250,253,256,259,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,1,6,11,16,21,26,31,36,41,46,51,56,61,66,71,76,81,86,91,96,101,106,111,116,121,126,131,136,141,146,151,1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,100,103,106,109,112,115,118,121,1,5,9,13,17,21,25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,101,105,109,113,117,121,125,129,133,137,141,145,149,153,157,161,165,169,173,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,1,5,1,6,11,16,21,26,31,36,41,46,51,56,61,66,71,76,81,86,91,96,101,106,111,116,121,126,131,136,141,146,151,156,161,166,171,176,181,186,191,196,201,206,211,216,221,226,231,236,241,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,1,6,11,16,21,26,31,36,41,46,51,56,61,66,71,76,81,86,91,96,101,106,111,116,121,126,131,136,141,146,151,156,161,166,1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,100,103,106,109,112,115,118,121,124,127,130,133,136,139,142,145,148,151,154,157,160,163,166,169,172,175,178,181,184,187,190,193,196,199,202,205,208,211,214,217,220,223,226,229,232,235,238,241,244,247,1,2,3,4,5,6,1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,1,4,7,10,13,16,19,22,25,28,31,34,37,40,43,46,49,52,55,58,61,64,67,70,73,76,79,82,85,88,91,94,97,100,103,106,109,112,115,118,121,124,127,130,133,136,139,142,145,148,151,154,157,1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,1,5,9,13,17,21,25,29,33,37,41,45,49,53,57,61,65,69,73,77,81,85,89,93,97,101,105,109,113,117,121,1,5,9,13,17,21,25,29,33,37,41,45,49,53,57,61,65,69,73,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,6};
+    //         int[] array = {2,3,1,1,4};
+//    System.out.println ( canJump ( array ) );
 //      List<Integer> list = new LinkedList <> ();
 //      list.add ( 1 );
 //    System.out.println (list.get ( 0 ));
