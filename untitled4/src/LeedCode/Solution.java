@@ -2,6 +2,7 @@ package LeedCode;
 
 import java.util.Arrays;
 import java.util.Random;
+import java.util.Scanner;
 
 
 class Solution {
@@ -76,7 +77,47 @@ class Solution {
           qsort(nums,right,r);
        }
      }
+    public static void main1 ( String[] args ) {
+        Scanner scanner = new Scanner ( System.in );
+        while(scanner.hasNextInt ()){
+            int n = scanner.nextInt ();
+            int[] cur = new int[n];
 
+            for(int i=0;i<n;i++){
+                cur[i] = scanner.nextInt ();
+            }
+            int sum = 0;
+
+            for(int i=0;i<cur.length;i++){
+                for(int j = i+1;j<cur.length;j++){
+                    sum+=cur[i]*cur[j];
+                }
+            }
+            System.out.println (sum);
+        }
+    }
+    public static void main2 ( String[] args ) {
+        Scanner scanner = new Scanner ( System.in );
+        while(scanner.hasNextInt ()){
+            int n = scanner.nextInt ();
+            long[] cur = new long[n];
+            long count = 0;
+            for(int i=0;i<n;i++){
+                cur[i] = (long) scanner.nextInt ();
+                count+=cur[i];
+            }
+            if(n==1){
+                System.out.println (cur[0]);
+                continue;
+            }
+            long sum = 0;
+            for(int i=0;i<cur.length;i++){
+                count-=cur[i];
+                sum+=cur[i] * count;
+            }
+            System.out.println (sum);
+        }
+    }
     private static void swap(int[] nums, int i, int i1) {
         int temp = nums[i];
         nums[i] = nums[i1];

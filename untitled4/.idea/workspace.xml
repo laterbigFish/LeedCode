@@ -5,13 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fafa6e1c-069b-483b-bbb2-9df2449c9c75" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/LeedCode/Solution.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LeedCode/demo1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LeedCode/demo2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LeedCode/demo3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/LeedCode/demo4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../untitled5/src/LeedCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../untitled3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled3/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Javaguid/test5.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/guid/demo1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/Solution.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo3$ListNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo3$ListNode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/untitled4/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LeedCode/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeedCode/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled5/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled5/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/out/production/untitled5/LeedCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled5/out/production/untitled5/LeedCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/out/production/untitled5/Sort/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled5/out/production/untitled5/Sort/Solution.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/out/production/untitled5/Sort/demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled5/out/production/untitled5/Sort/demo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/src/LeedCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled5/src/LeedCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/src/Sort/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled5/src/Sort/Solution.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../untitled5/src/Sort/demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../untitled5/src/Sort/demo.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,24 +54,41 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.Main.executor": "Run",
     "Application.Solution.executor": "Run",
     "Application.demo1.executor": "Run",
     "Application.demo2.executor": "Run",
     "Application.demo3.executor": "Debug",
     "Application.demo4.executor": "Run",
+    "Application.test.executor": "Run",
+    "Application.test1.executor": "Debug",
+    "Application.test3.executor": "Run",
+    "Application.test4.executor": "Run",
+    "Application.test5.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "onboarding.tips.debug.path": "D:/LeedCode/untitled4/src/Main.java"
+    "onboarding.tips.debug.path": "D:/LeedCode/untitled4/src/Main.java",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.editor"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.demo4">
-    <configuration name="Solution" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="LeedCode.Solution" />
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="untitled4" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="demo1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="guid.demo1" />
       <module name="untitled4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="LeedCode.*" />
+          <option name="PATTERN" value="guid.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -63,12 +96,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="demo2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="LeedCode.demo2" />
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Javaguid.test" />
       <module name="untitled4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="LeedCode.*" />
+          <option name="PATTERN" value="Javaguid.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -76,12 +109,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="demo3" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="LeedCode.demo3" />
+    <configuration name="test4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Javaguid.test4" />
       <module name="untitled4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="LeedCode.*" />
+          <option name="PATTERN" value="Javaguid.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -89,12 +122,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="demo4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="LeedCode.demo4" />
+    <configuration name="test5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Javaguid.test5" />
       <module name="untitled4" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="LeedCode.*" />
+          <option name="PATTERN" value="Javaguid.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -104,10 +137,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.demo4" />
-        <item itemvalue="Application.Solution" />
-        <item itemvalue="Application.demo3" />
-        <item itemvalue="Application.demo2" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.demo1" />
+        <item itemvalue="Application.test5" />
+        <item itemvalue="Application.test4" />
+        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -126,14 +160,24 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/LeedCode/demo3.java</url>
           <line>47</line>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LeedCode/demo4.java</url>
+          <line>357</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/LeedCode/demo4.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Javaguid/test5.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="11" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
