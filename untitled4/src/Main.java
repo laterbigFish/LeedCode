@@ -106,10 +106,126 @@ import java.time.format.DateTimeFormatter;
 //    }
 //}
 import java.util.*;
+
 public class Main {
+    public static boolean containsNearbyAlmostDuplicate(int[] nums, int indexDiff, int valueDiff) {
+
+        for (int i = 0; i < nums.length; i++) {
+
+            for (int j = 0; j < nums.length; j++) {
+                if (func(nums, i, j, indexDiff, valueDiff))
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public  static boolean func(int[] nums, int i, int j,int indexDiff,int valueDiff) {
+
+        if ((i!=j) && (Math.abs ( i-j ) <= indexDiff) && Math.abs ( nums[i]-nums[j] )<=valueDiff) {
+            return true;
+        }
+
+        return false;
+    }
+    private static List<String> list = new LinkedList<>();
+
+    public  static List<String> findRepeatedDnaSequences(String s) {
+        if (s.length() < 10)
+            return list;
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        // 全部遍历一遍
+        for (int i = 0; i < s.length(); i++) {
+            if (i + 9 < s.length()) {
+                         String cur = s.substring(i, i + 10);
+                if (!hashMap.containsKey(cur))
+                    hashMap.put(cur, 1);
+                else{
+                    if(!list.contains ( cur )) list.add ( cur );
+                }
+            }
+        }
+        return list;
+    }
+
+    public static void main ( String[] args ) {
+        int[] nums = {1,2,3,1};
+        containsNearbyAlmostDuplicate ( nums,3,0 );
+    }
+    public static void main6 ( String[] args ) {
+         Scanner scanner = new Scanner ( System.in );
+
+         while(scanner.hasNextInt ()){
+             int n = scanner.nextInt ();
+             HashMap<Integer,String> hashMap = new HashMap <> ();
+             int count  = 0;
+             for(int i=0;i<n;i++){
+                 int salary = scanner.nextInt ();
+                 String str = scanner.nextLine ();
+                 if(hashMap.containsKey ( salary )){
+                     hashMap.put ( salary, str);
+                 }else{
+                     String s = hashMap.get ( salary );
+                     s = s+str;
+                     hashMap.put ( salary,s );
+                 }
+             }
+             //遍历HashMap
+             for (Map.Entry <Integer, String> entry : hashMap.entrySet()) {
+                 char[] temp = entry.getValue ().toCharArray ();
+                 Arrays.sort ( temp );
+                 if(temp.length>=2){
+                     int left = 0,right = temp.length-1;
+                     while(left<right){
+                         if(temp[left]!=temp[right]){
+                             count++;
+                             left++;
+                             right--;
+                         }else{
+                             break;
+                         }
+                     }
+                 }
+             }
+             System.out.println (count);
+         }
+         scanner.close ();
+    }
+    public static void main5 ( String[] args ) {
+        Scanner scanner = new Scanner ( System.in );
+
+        while(scanner.hasNextLine ()){
+            StringBuilder stringBuilder = new StringBuilder (scanner.nextLine ());
+            StringBuilder stringBuilder1 = new StringBuilder (stringBuilder.toString ());
+                if(stringBuilder.length ()<=1){
+                    System.out.println (1);
+                    break;
+                }
+                int index = 1;
+                char cur1 = 'L',cur2 = 'Q';
+                while(index<stringBuilder.length ()){
+                   if(stringBuilder.charAt ( index )==stringBuilder.charAt ( index-1 ) && stringBuilder.charAt ( index )==cur1){
+                       stringBuilder.delete ( index-1,index );
+                       continue;
+                   }
+                   index++;
+                }
+                int index2 = 1;
+
+                while(index2<stringBuilder1.length ()){
+                    if(stringBuilder1.charAt ( index2 )==stringBuilder1.charAt ( index2-1 ) && stringBuilder1.charAt ( index2 )==cur2){
+                        stringBuilder1.delete ( index2-1,index2 );
+                        continue;
+                    }
+                    index2++;
+                }
+            System.out.println (Math.min ( stringBuilder.length (),stringBuilder1.length ()));
+        }
+        scanner.close ();
+    }
     //还跌判断月份是否合法
      private final  static int[] months = {0,31,28,31,30,31,30,31,31,30,31,30,31};
-    public static void main(String[] args){
+    public static void main3(String[] args){
         Scanner scanner = new Scanner ( System.in );
 
         while(scanner.hasNextInt ()){

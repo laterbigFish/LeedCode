@@ -5,18 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fafa6e1c-069b-483b-bbb2-9df2449c9c75" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Javaguid/test5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/guid/demo1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/Solution.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/Solution.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo3$ListNode.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo3$ListNode.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/LeedCode/demo4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/untitled4/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/untitled4/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/LeedCode/Solution.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/LeedCode/Solution.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../untitled5/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../untitled5/.idea/modules.xml" beforeDir="false" />
@@ -54,7 +43,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Application.Main.executor": "Run",
+    "Application.Main.executor": "Debug",
     "Application.Solution.executor": "Run",
     "Application.demo1.executor": "Run",
     "Application.demo2.executor": "Run",
@@ -178,6 +167,16 @@
           <url>file://$PROJECT_DIR$/src/Javaguid/test5.java</url>
           <line>159</line>
           <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>214</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/Main.java</url>
+          <line>112</line>
+          <option name="timeStamp" value="18" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
